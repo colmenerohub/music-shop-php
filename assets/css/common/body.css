@@ -1,0 +1,45 @@
+@font-face {
+    font-family: myFont;
+    src: url(../../font/Poppins-Regular.ttf);
+}
+
+body {
+    font-family: myFont;
+    background: linear-gradient(
+        to bottom,
+        hsl(0, 0%, 100%) 0%,
+        hsl(0, 0%, 98.95%) 8%,
+        hsl(0, 0%, 95.97%) 15.3%,
+        hsl(0, 0%, 91.33%) 22%,
+        hsl(0, 0%, 85.28%) 28.3%,
+        hsl(0, 0%, 78.07%) 34.1%,
+        hsl(0, 0%, 69.98%) 39.8%,
+        hsl(0, 0%, 61.26%) 45.4%,
+        hsl(0, 0%, 52.18%) 50.9%,
+        hsl(0, 0%, 42.98%) 56.6%,
+        hsl(0, 0%, 33.93%) 62.5%,
+        hsl(0, 0%, 25.28%) 68.8%,
+        hsl(0, 0%, 17.31%) 75.6%,
+        hsl(0, 0%, 10.27%) 83%,
+        hsl(0, 0%, 4.41%) 91.1%,
+        hsl(0, 0%, 0%) 100%
+    );
+}
+
+.subTitles {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+}  
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
