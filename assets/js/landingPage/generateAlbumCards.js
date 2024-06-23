@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'albumCard';
         card.innerHTML = `
             <div class="container">
-                <div class="front" style="background-image: url(/MarioMusicShop/uploads/new/${ruta}.jpg)"></div>
+                <div class="front" style="background-image: url(/music-shop-php/uploads/new/${ruta}.jpg)"></div>
                 <div class="back">
                     <div class="inner">
                         <span>${album.author}</span>

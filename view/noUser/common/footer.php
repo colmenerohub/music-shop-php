@@ -2,15 +2,15 @@
     <div id="info">
         <div id="help">
             <h4>Help</h4>
-            <a href="/MarioMusicShop/view/noUser/legal/legalNotices.php">Legal Notices</a>
-            <a href="/MarioMusicShop/view/noUser/legal/cookiesManagement.php">Cookies</a>
-            <a href="/MarioMusicShop/view/noUser/legal/privacyPolicy.php">Privacy Policy</a>
-            <a href="/MarioMusicShop/view/noUser/legal/conditionsOfUse.php">Conditions of Use</a>
+            <a href="/music-shop-php/view/noUser/legal/legalNotices.php">Legal Notices</a>
+            <a href="/music-shop-php/view/noUser/legal/cookiesManagement.php">Cookies</a>
+            <a href="/music-shop-php/view/noUser/legal/privacyPolicy.php">Privacy Policy</a>
+            <a href="/music-shop-php/view/noUser/legal/conditionsOfUse.php">Conditions of Use</a>
         </div>
 
         <div id="imgFooter">
             <a href="#" id="goToTopLink">
-                <img src="/MarioMusicShop/assets/media/img/yellowLogo.png" alt="Brodiscs">
+                <img src="/music-shop-php/assets/media/img/yellowLogo.png" alt="Brodiscs">
             </a>
         </div>
 

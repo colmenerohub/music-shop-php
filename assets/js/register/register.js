@@ -20,7 +20,7 @@ $(document).ready(() => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\(\)\!\@\#\$\%\&\/\?\¿\¡\!\_\.\*]).{8,}$/;
 
 
-        
+
     // ------------------------------------------------------------------
     // FUNCTIONS STATEMENT
     // ------------------------------------------------------------------
@@ -28,7 +28,7 @@ $(document).ready(() => {
     // ------------------------------------------------------------------
     // CHECK FORM INFO
     // ------------------------------------------------------------------
-    function checkRegex(input, regex, data, message){
+    function checkRegex(input, regex, data, message) {
         if (input && input instanceof HTMLElement) {
             input.addEventListener("blur", () => {
                 // Comprobamos si el input esta vacío
@@ -39,7 +39,7 @@ $(document).ready(() => {
                 } else {
                     // Si el input recibe algo, comprobamos que sea válido
                     let inputInfo = input.value
-                    if(data === 'Phone') inputInfo = input.value.replace(/\s/g, '')
+                    if (data === 'Phone') inputInfo = input.value.replace(/\s/g, '')
 
                     if (!regex.test(inputInfo)) {
                         // Si no lo es, mostramos error en rojo
@@ -51,7 +51,7 @@ $(document).ready(() => {
                             input.style.borderColor = 'rgb(26, 196, 26)';
                             $(`#register${data}Error`)[0].innerHTML = '';
                         } else {
-                            if(registerPassword.value === registerPasswordc.value) {
+                            if (registerPassword.value === registerPasswordc.value) {
                                 input.style.borderColor = 'rgb(26, 196, 26)';
                                 $(`#register${data}Error`)[0].innerHTML = '';
                             } else {
@@ -62,7 +62,7 @@ $(document).ready(() => {
                     }
                 }
             });
-        } 
+        }
     }
 
     checkRegex(registerName, namesRegex, 'Name', 'Solo se permite un espacio entre nombres');
@@ -81,13 +81,13 @@ $(document).ready(() => {
     // ------------------------------------------------------------------
     function togglePassword(button) {
         const eyeIcon = $(`#register${button}_eye`)[0];
-    
+
         eyeIcon.addEventListener('click', () => {
             if (eyeIcon.src.includes('invisiblePassword')) {
-                eyeIcon.src = '/MarioMusicShop/assets/icons/visiblePassword.svg';
+                eyeIcon.src = '/music-shop-php/assets/icons/visiblePassword.svg';
                 $(`#register${button}`)[0].type = 'text';
             } else {
-                eyeIcon.src = '/MarioMusicShop/assets/icons/invisiblePassword.svg';
+                eyeIcon.src = '/music-shop-php/assets/icons/invisiblePassword.svg';
                 $(`#register${button}`)[0].type = 'password';
             }
         });
@@ -103,7 +103,7 @@ $(document).ready(() => {
     registerPhone.addEventListener('input', function () {
         let numeroActual = this.value;
         numeroActual = numeroActual.replace(/\s/g, '');
-    
+
         let numeroFormateado = '';
         for (let i = 0; i < numeroActual.length; i++) {
             if (i > 0 && i % 3 === 0) {
@@ -111,7 +111,7 @@ $(document).ready(() => {
             }
             numeroFormateado += numeroActual[i];
         }
-    
+
         this.value = numeroFormateado;
     });
 
@@ -123,16 +123,16 @@ $(document).ready(() => {
     function sendForm(action, formData) {
         $.ajax({
             type: "POST",
-            url: "/MarioMusicShop/controller/usersController.php",
+            url: "/music-shop-php/controller/usersController.php",
             data: { action: action, formData: formData },
             dataType: "json",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (response) {
                 Swal.fire({
                     icon: "success",
                     title: response.message,
-                }).then(function() {
-                    window.location.href = "index.php?login";    
+                }).then(function () {
+                    window.location.href = "index.php?login";
                 })
             },
             timeout: 5000,
@@ -144,7 +144,7 @@ $(document).ready(() => {
                 });
             },
         });
-    } 
+    }
 
 
 
@@ -185,7 +185,7 @@ $(document).ready(() => {
                 }
             }
         }
-        
+
         errorAlert = errorAlert.slice(0, -2);
 
         if (wrongFieldsCount === 1) {

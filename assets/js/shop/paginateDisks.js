@@ -17,7 +17,7 @@ $(document).ready(() => {
 
     const insertButton = $('#insertButton')[0];
 
-    const APIURL = '/MarioMusicShop/controller/disksController.php';
+    const APIURL = '/music-shop-php/controller/disksController.php';
 
 
 
@@ -25,8 +25,8 @@ $(document).ready(() => {
         element.style.display = condition ? 'inline' : 'none';
     }
 
-    function resetPagination(){
-        main.innerHTML += 
+    function resetPagination() {
+        main.innerHTML +=
             `<div id='pagination'>
                 <span id='prevPage'></span>
                 <span id='goFirstPage' class="icon-arrow-left2"></span>
@@ -36,7 +36,7 @@ $(document).ready(() => {
                 <span id='goLastPage' class="icon-arrow-right2"></span>
                 <span id='lastPage'></span>
             </div>`;
-        
+
         prevPage = $('#prevPage')[0];
         goFirstPage = $('#goFirstPage')[0];
         goPrevPage = $('#goPrevPage')[0];
@@ -46,7 +46,7 @@ $(document).ready(() => {
         lastPage = $('#lastPage')[0];
     }
 
-    function createCards(disks){
+    function createCards(disks) {
         main.innerHTML = '';
         disks.forEach(function (disk) {
             let diskElement = document.createElement("div");
@@ -54,7 +54,7 @@ $(document).ready(() => {
             diskElement.dataset.id_products = disk.id_productos;
             diskElement.innerHTML = `
                 <div class="container">
-                    <div class="front" style="background-image: url(/MarioMusicShop/uploads/productos/${disk.imagen})"></div>
+                    <div class="front" style="background-image: url(/music-shop-php/uploads/productos/${disk.imagen})"></div>
                     <div class="back">
                         <div class="inner">
                             <span>${disk.artista}</span>
@@ -86,7 +86,7 @@ $(document).ready(() => {
 
     function mainClickListener(event) {
         let id_products = '';
-    
+
         if (event.target.classList.contains('icon-bin')) {
             id_products = event.target.closest('.albumCard').dataset.id_products;
             deleteDisk(id_products);
@@ -116,9 +116,9 @@ $(document).ready(() => {
                         <input type='submit' />
                     </form>
                 </div>`
-                
+
             insertForm = $('#insertDiskForm form')[0]
-    
+
             insertForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 sendInsertForm();
@@ -143,18 +143,18 @@ $(document).ready(() => {
 
         $.ajax({
             type: "POST",
-            url: "/MarioMusicShop/controller/disksController.php",
+            url: "/music-shop-php/controller/disksController.php",
             data: formData,
             processData: false,
             contentType: false,
             dataType: "json",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (response) {
                 Swal.fire({
                     icon: "success",
                     title: response.message,
-                }).then(function() {
-                    window.location.href = "index.php?shop";    
+                }).then(function () {
+                    window.location.href = "index.php?shop";
                 })
             },
             timeout: 5000,
@@ -164,8 +164,8 @@ $(document).ready(() => {
                     title: "Error " + xhr.status,
                     text: xhr.responseText.error
                 });
-                if(xhr.responseText.errorDebug) 
-                console.error(xhr.responseText.errorDebug); 
+                if (xhr.responseText.errorDebug)
+                    console.error(xhr.responseText.errorDebug);
             },
         });
     }
@@ -173,15 +173,15 @@ $(document).ready(() => {
     function showDiskById(id_products) {
         $.ajax({
             type: "POST",
-            url: "/MarioMusicShop/controller/disksController.php",
+            url: "/music-shop-php/controller/disksController.php",
             data: { action: 'getDiskById', id_products: id_products },
             dataType: "json",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (response) {
                 pagination.innerHTML = '';
                 main.innerHTML = `
                     <div id='updateDiskForm'>
-                        <img src='/MarioMusicShop/uploads/productos/${response.imagen}'>
+                        <img src='/music-shop-php/uploads/productos/${response.imagen}'>
                         
                         <form>
                             <span>${response.id_productos}</span>
@@ -204,8 +204,8 @@ $(document).ready(() => {
                     title: "Error " + xhr.status,
                     text: JSON.parse(xhr.responseText).error
                 });
-                if(JSON.parse(xhr.responseText).errorDebug) 
-                console.error(JSON.parse(xhr.responseText).errorDebug); 
+                if (JSON.parse(xhr.responseText).errorDebug)
+                    console.error(JSON.parse(xhr.responseText).errorDebug);
             },
         });
     }
@@ -213,15 +213,15 @@ $(document).ready(() => {
     function editDiskById(id_products) {
         $.ajax({
             type: "POST",
-            url: "/MarioMusicShop/controller/disksController.php",
+            url: "/music-shop-php/controller/disksController.php",
             data: { action: 'getDiskById', id_products: id_products },
             dataType: "json",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (response) {
                 pagination.innerHTML = '';
                 main.innerHTML = `
                     <div id='updateDiskForm'>
-                        <img src='/MarioMusicShop/uploads/productos/${response.imagen}'>
+                        <img src='/music-shop-php/uploads/productos/${response.imagen}'>
 
                         <form>
                             <input type='text' id='updateId_products' name='id_products' value='${response.id_productos}' hidden/>
@@ -239,9 +239,9 @@ $(document).ready(() => {
                             <input type='submit' />
                         </form>
                     </div>`
-                
+
                 updateForm = $('#updateDiskForm form')[0];
-                
+
                 updateForm.addEventListener('submit', (e) => {
                     e.preventDefault();
                     sendUpdateForm();
@@ -254,8 +254,8 @@ $(document).ready(() => {
                     title: "Error " + xhr.status,
                     text: JSON.parse(xhr.responseText).error
                 });
-                if(JSON.parse(xhr.responseText).errorDebug) 
-                console.error(JSON.parse(xhr.responseText).errorDebug); 
+                if (JSON.parse(xhr.responseText).errorDebug)
+                    console.error(JSON.parse(xhr.responseText).errorDebug);
             },
         });
     }
@@ -282,18 +282,18 @@ $(document).ready(() => {
         if (result) {
             $.ajax({
                 type: "POST",
-                url: "/MarioMusicShop/controller/disksController.php",
+                url: "/music-shop-php/controller/disksController.php",
                 data: formData,
                 processData: false,
                 contentType: false,
                 dataType: "json",
-                beforeSend: function () {},
+                beforeSend: function () { },
                 success: function (response) {
                     Swal.fire({
                         icon: "success",
                         title: response.message,
-                    }).then(function() {
-                        window.location.href = "index.php?shop";    
+                    }).then(function () {
+                        window.location.href = "index.php?shop";
                     })
                 },
                 timeout: 5000,
@@ -303,27 +303,27 @@ $(document).ready(() => {
                         title: "Error " + xhr.status,
                         text: xhr.responseText.error
                     });
-                    if(xhr.responseText.errorDebug) 
-                    console.error(xhr.responseText.errorDebug); 
+                    if (xhr.responseText.errorDebug)
+                        console.error(xhr.responseText.errorDebug);
                 },
             });
         }
     }
 
-    function deleteDisk(id_products){
+    function deleteDisk(id_products) {
         if (confirm('Are you sure you want to delete')) {
             $.ajax({
                 type: "POST",
-                url: "/MarioMusicShop/controller/disksController.php",
+                url: "/music-shop-php/controller/disksController.php",
                 data: { action: 'deleteDisk', id_products: id_products },
                 dataType: "json",
-                beforeSend: function () {},
+                beforeSend: function () { },
                 success: function (response) {
                     Swal.fire({
                         icon: "success",
                         title: response.message,
-                    }).then(function() {
-                        window.location.href = "index.php?shop";    
+                    }).then(function () {
+                        window.location.href = "index.php?shop";
                     })
                 },
                 timeout: 5000,
@@ -333,13 +333,13 @@ $(document).ready(() => {
                         title: "Error " + xhr.status,
                         text: JSON.parse(xhr.responseText).error
                     });
-                    if(JSON.parse(xhr.responseText).errorDebug) 
-                    console.error(JSON.parse(xhr.responseText).errorDebug); 
+                    if (JSON.parse(xhr.responseText).errorDebug)
+                        console.error(JSON.parse(xhr.responseText).errorDebug);
                 },
             });
         }
     }
-    
+
     function getDisksByPage(url) {
         let currentPage = parseInt(url.split('=')[1]);
         if (isNaN(currentPage)) currentPage = 1;
@@ -347,7 +347,7 @@ $(document).ready(() => {
         $.ajax({
             type: "GET",
             url: url,
-            beforeSend: function () {},
+            beforeSend: function () { },
             dataType: "json",
             success: function (response) {
                 console.log(response);
@@ -355,10 +355,10 @@ $(document).ready(() => {
                 createCards(response.results)
                 resetPagination();
 
-                if(prevPage) prevPage.innerHTML = currentPage - 1;
+                if (prevPage) prevPage.innerHTML = currentPage - 1;
                 actualPage.innerHTML = currentPage;
                 lastPage.innerHTML = response.info.pages;
-                
+
                 setDisplay(prevPage, response.info.prev !== null);
                 setDisplay(goFirstPage, response.info.prev !== null);
                 setDisplay(goPrevPage, response.info.prev !== null);
@@ -366,10 +366,10 @@ $(document).ready(() => {
                 setDisplay(goLastPage, response.info.next !== null);
                 setDisplay(lastPage, response.info.next !== null);
 
-                goFirstPage.addEventListener('click', () =>{ getDisksByPage(APIURL + "?page=1"); });
-                goPrevPage.addEventListener('click', () =>{ getDisksByPage(response.info.prev); });
-                goNextPage.addEventListener('click', () =>{ getDisksByPage(response.info.next); });
-                goLastPage.addEventListener('click', () =>{ getDisksByPage(APIURL + '?page=' + response.info.pages); });
+                goFirstPage.addEventListener('click', () => { getDisksByPage(APIURL + "?page=1"); });
+                goPrevPage.addEventListener('click', () => { getDisksByPage(response.info.prev); });
+                goNextPage.addEventListener('click', () => { getDisksByPage(response.info.next); });
+                goLastPage.addEventListener('click', () => { getDisksByPage(APIURL + '?page=' + response.info.pages); });
             },
             timeout: 5000,
             error: function (xhr) {
